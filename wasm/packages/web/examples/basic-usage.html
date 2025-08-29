@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@droply/web - Basic Usage</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+        }
+        button {
+            background: #0070f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0051cc;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            background: #f6f8fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+        .success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        input[type="file"] {
+            margin: 10px 0;
+        }
+        .progress {
+            width: 100%;
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #0070f3;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌐 @droply/web - Basic Usage</h1>
+    <p>This example demonstrates the basic usage of the @droply/web package for compression and archiving.</p>
+
+    <div class="demo-section">
+        <h2>🚀 Compression Demo</h2>
+        <p>Compress and decompress text data using different algorithms.</p>
+        
+        <textarea id="inputText" placeholder="Enter some text to compress..." rows="4" style="width: 100%; margin: 10px 0;"></textarea>
+        
+        <div>
+            <button onclick="compressText('gzip')">Compress with Gzip</button>
+            <button onclick="compressText('brotli')">Compress with Brotli</button>
+            <button onclick="compressText('zip')">Compress with ZIP</button>
+        </div>
+        
+        <div id="compressionResult" class="result" style="display: none;"></div>
+    </div>
+
+    <div class="demo-section">
+        <h2>📦 Archive Demo</h2>
+        <p>Create and extract archives from multiple files.</p>
+        
+        <input type="file" id="fileInput" multiple accept="*/*">
+        
+        <div>
+            <button onclick="createArchive('zip')">Create ZIP Archive</button>
+            <button onclick="createArchive('tar')">Create TAR Archive</button>
+        </div>
+        
+        <div id="archiveResult" class="result" style="display: none;"></div>
+    </div>
+
+    <div class="demo-section">
+        <h2>🔧 Device Information</h2>
+        <p>Get information about your device and browser capabilities.</p>
+        
+        <button onclick="showDeviceInfo()">Show Device Info</button>
+        <button onclick="showWasmCapabilities()">Show WASM Capabilities</button>
+        
+        <div id="deviceInfo" class="result" style="display: none;"></div>
+    </div>
+
+    <div class="demo-section">
+        <h2>🌊 Streaming Demo</h2>
+        <p>Process multiple files with progress tracking.</p>
+        
+        <input type="file" id="streamingFiles" multiple accept="*/*">
+        <button onclick="processFilesStreaming()">Process Files with Streaming</button>
+        
+        <div class="progress" id="progressBar" style="display: none;">
+            <div class="progress-bar" id="progressBarFill"></div>
+        </div>
+        
+        <div id="streamingResult" class="result" style="display: none;"></div>
+    </div>
+
+    <script type="module">
+        // Import the @droply/web package
+        import { 
+            compress, 
+            decompress, 
+            createArchive, 
+            extractArchive,
+            getDeviceRecommendations,
+            getWasmCapabilities,
+            processFilesStreaming,
+            fileExtensions
+        } from './index.js';
+
+        // Global variables for demo
+        let compressedData = null;
+        let archiveData = null;
+
+        // Compression demo
+        window.compressText = async function(algorithm) {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                alert('Please enter some text to compress');
+                return;
+            }
+
+            try {
+                const textEncoder = new TextEncoder();
+                const inputData = textEncoder.encode(inputText);
+                
+                console.log(`Compressing ${inputData.length} bytes with ${algorithm}...`);
+                const compressed = await compress(inputData, algorithm, 6);
+                
+                compressedData = compressed;
+                
+                const resultDiv = document.getElementById('compressionResult');
+                resultDiv.style.display = 'block';
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `✅ Compressed successfully!
+Algorithm: ${algorithm}
+Original size: ${inputData.length} bytes
+Compressed size: ${compressed.length} bytes
+Compression ratio: ${((1 - compressed.length / inputData.length) * 100).toFixed(1)}%
+
+Click "Decompress" to restore the original text.`;
+                
+                // Add decompress button
+                if (!document.getElementById('decompressBtn')) {
+                    const decompressBtn = document.createElement('button');
+                    decompressBtn.id = 'decompressBtn';
+                    decompressBtn.textContent = 'Decompress';
+                    decompressBtn.onclick = () => decompressText(algorithm);
+                    resultDiv.appendChild(document.createElement('br'));
+                    resultDiv.appendChild(decompressBtn);
+                }
+                
+            } catch (error) {
+                showError('compressionResult', `Compression failed: ${error.message}`);
+            }
+        };
+
+        // Decompression demo
+        window.decompressText = async function(algorithm) {
+            if (!compressedData) {
+                alert('No compressed data to decompress');
+                return;
+            }
+
+            try {
+                console.log(`Decompressing with ${algorithm}...`);
+                const decompressed = await decompress(compressedData, algorithm);
+                
+                const textDecoder = new TextDecoder();
+                const originalText = textDecoder.decode(decompressed);
+                
+                const resultDiv = document.getElementById('compressionResult');
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `✅ Decompressed successfully!
+Algorithm: ${algorithm}
+Compressed size: ${compressedData.length} bytes
+Decompressed size: ${decompressed.length} bytes
+
+Original text:
+"${originalText}"`;
+                
+            } catch (error) {
+                showError('compressionResult', `Decompression failed: ${error.message}`);
+            }
+        };
+
+        // Archive creation demo
+        window.createArchive = async function(format) {
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;
+            
+            if (files.length === 0) {
+                alert('Please select files to archive');
+                return;
+            }
+
+            try {
+                const fileTuples = [];
+                let totalSize = 0;
+                
+                for (const file of files) {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const uint8Array = new Uint8Array(arrayBuffer);
+                    fileTuples.push({
+                        name: file.name,
+                        data: uint8Array
+                    });
+                    totalSize += uint8Array.length;
+                }
+                
+                console.log(`Creating ${format} archive with ${files.length} files...`);
+                const archive = await createArchive(fileTuples, format, { compressInside: true });
+                
+                archiveData = archive;
+                
+                const resultDiv = document.getElementById('archiveResult');
+                resultDiv.style.display = 'block';
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `✅ Archive created successfully!
+Format: ${format}
+Files: ${files.length}
+Total original size: ${totalSize} bytes
+Archive size: ${archive.length} bytes
+Compression ratio: ${((1 - archive.length / totalSize) * 100).toFixed(1)}%
+
+Click "Extract Archive" to extract the files.`;
+                
+                // Add extract button
+                if (!document.getElementById('extractBtn')) {
+                    const extractBtn = document.createElement('button');
+                    extractBtn.id = 'extractBtn';
+                    extractBtn.textContent = 'Extract Archive';
+                    extractBtn.onclick = () => extractArchiveFiles(format);
+                    resultDiv.appendChild(document.createElement('br'));
+                    resultDiv.appendChild(extractBtn);
+                }
+                
+            } catch (error) {
+                showError('archiveResult', `Archive creation failed: ${error.message}`);
+            }
+        };
+
+        // Archive extraction demo
+        window.extractArchiveFiles = async function(format) {
+            if (!archiveData) {
+                alert('No archive to extract');
+                return;
+            }
+
+            try {
+                console.log(`Extracting ${format} archive...`);
+                const extractedFiles = await extractArchive(archiveData, format);
+                
+                const resultDiv = document.getElementById('archiveResult');
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `✅ Archive extracted successfully!
+Format: ${format}
+Extracted files: ${extractedFiles.length}
+
+Files:`;
+                
+                extractedFiles.forEach((file, index) => {
+                    resultDiv.textContent += `\n${index + 1}. ${file.name} (${file.data.length} bytes)`;
+                });
+                
+            } catch (error) {
+                showError('archiveResult', `Archive extraction failed: ${error.message}`);
+            }
+        };
+
+        // Device information demo
+        window.showDeviceInfo = function() {
+            try {
+                const recommendations = getDeviceRecommendations();
+                
+                const resultDiv = document.getElementById('deviceInfo');
+                resultDiv.style.display = 'block';
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `📱 Device Recommendations:
+Compression Level: ${recommendations.compressionLevel}
+Batch Size: ${recommendations.batchSize}
+Use Web Workers: ${recommendations.useWebWorkers}
+Memory Optimization: ${recommendations.memoryOptimization}`;
+                
+            } catch (error) {
+                showError('deviceInfo', `Failed to get device info: ${error.message}`);
+            }
+        };
+
+        // WASM capabilities demo
+        window.showWasmCapabilities = function() {
+            try {
+                const capabilities = getWasmCapabilities();
+                
+                const resultDiv = document.getElementById('deviceInfo');
+                resultDiv.style.display = 'block';
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `🔧 WASM Capabilities:
+Supported: ${capabilities.supported}
+Streaming: ${capabilities.streaming}
+SIMD: ${capabilities.simd}
+Threads: ${capabilities.threads}`;
+                
+            } catch (error) {
+                showError('deviceInfo', `Failed to get WASM capabilities: ${error.message}`);
+            }
+        };
+
+        // Streaming demo
+        window.processFilesStreaming = async function() {
+            const fileInput = document.getElementById('streamingFiles');
+            const files = fileInput.files;
+            
+            if (files.length === 0) {
+                alert('Please select files to process');
+                return;
+            }
+
+            try {
+                const fileTuples = [];
+                for (const file of files) {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const uint8Array = new Uint8Array(arrayBuffer);
+                    fileTuples.push({
+                        name: file.name,
+                        data: uint8Array
+                    });
+                }
+                
+                const progressBar = document.getElementById('progressBar');
+                const progressBarFill = document.getElementById('progressBarFill');
+                progressBar.style.display = 'block';
+                
+                console.log(`Processing ${files.length} files with streaming...`);
+                const result = await processFilesStreaming(
+                    fileTuples,
+                    { compression: { level: 6 } },
+                    (progress) => {
+                        const percentage = progress.percentage;
+                        progressBarFill.style.width = `${percentage}%`;
+                        console.log(`Progress: ${percentage}%`);
+                    }
+                );
+                
+                const resultDiv = document.getElementById('streamingResult');
+                resultDiv.style.display = 'block';
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `✅ Files processed successfully with streaming!
+Files processed: ${files.length}
+Result size: ${result.data.length} bytes`;
+                
+            } catch (error) {
+                showError('streamingResult', `Streaming processing failed: ${error.message}`);
+            }
+        };
+
+        // Utility function to show errors
+        function showError(elementId, message) {
+            const resultDiv = document.getElementById(elementId);
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result error';
+            resultDiv.textContent = `❌ ${message}`;
+        }
+
+        // Initialize the demo
+        console.log('@droply/web demo initialized');
+        console.log('Available file extensions:', fileExtensions);
+    </script>
+</body>
+</html>

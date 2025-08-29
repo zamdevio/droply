@@ -1,0 +1,67 @@
+{
+  "name": "@droply/sdk",
+  "version": "1.0.0",
+  "description": "High-performance compression and archive SDK with WASM-powered algorithms",
+  "type": "module",
+  "private": false,
+  "main": "./dist/web.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "node": "./dist/node.js",
+      "default": "./dist/web.js"
+    },
+    "./utils/archiver": {
+      "types": "./dist/utils/archiver.d.ts",
+      "node": "./dist/utils/archiver.cjs",
+      "default": "./dist/utils/archiver.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "compression",
+    "archive",
+    "wasm",
+    "gzip",
+    "brotli",
+    "zip",
+    "tar",
+    "sdk",
+    "typescript"
+  ],
+  "author": "ZamDev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zamdevio/droply.git",
+    "directory": "wasm/packages/sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/zamdevio/droply/issues"
+  },
+  "homepage": "https://github.com/zamdevio/droply#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/node.ts src/web.ts src/utils/archiver.ts --dts --format esm,cjs --out-dir dist",
+    "dev": "tsup src/index.ts --watch --dts --format esm,cjs --out-dir dist",
+    "pack": "npm pack",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@droply/plugins": "^0.1.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0"
+  }
+}

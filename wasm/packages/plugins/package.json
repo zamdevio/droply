@@ -1,0 +1,121 @@
+{
+  "name": "@droply/plugins",
+  "version": "2.0.2",
+  "description": "High-performance WASM compression and archive plugins for Node.js and browsers",
+  "type": "module",
+  "private": false,
+  "main": "./build/compression/gzip/module.js",
+  "exports": {
+    "./nodejs/archive/tar": {
+      "default": "dist/nodejs/archive/tar/index.js",
+      "types": "dist/nodejs/archive/tar/index.d.ts"
+    },
+    "./nodejs/archive/zip": {
+      "default": "dist/nodejs/archive/zip/index.js",
+      "types": "dist/nodejs/archive/zip/index.d.ts"
+    },
+    "./nodejs/compression/gzip": {
+      "default": "dist/nodejs/compression/gzip/index.js",
+      "types": "dist/nodejs/compression/gzip/index.d.ts"
+    },
+    "./nodejs/compression/brotli": {
+      "default": "dist/nodejs/compression/brotli/index.js",
+      "types": "dist/nodejs/compression/brotli/index.d.ts"
+    },
+    "./nodejs/compression/zip": {
+      "default": "dist/nodejs/compression/zip/index.js",
+      "types": "dist/nodejs/compression/zip/index.d.ts"
+    },
+    "./bundler/archive/tar": {
+      "default": "dist/bundler/archive/tar/index.js",
+      "types": "dist/bundler/archive/tar/index.d.ts"
+    },
+    "./bundler/archive/zip": {
+      "default": "dist/bundler/archive/zip/index.js",
+      "types": "dist/bundler/archive/zip/index.d.ts"
+    },
+    "./bundler/compression/gzip": {
+      "default": "dist/bundler/compression/gzip/index.js",
+      "types": "dist/bundler/compression/gzip/index.d.ts"
+    },
+    "./bundler/compression/brotli": {
+      "default": "dist/bundler/compression/brotli/index.js",
+      "types": "dist/bundler/compression/brotli/index.d.ts"
+    },
+    "./bundler/compression/zip": {
+      "default": "dist/bundler/compression/zip/index.js",
+      "types": "dist/bundler/compression/zip/index.d.ts"
+    },
+    "./web/archive/tar": {
+      "default": "dist/web/archive/tar/index.js",
+      "types": "dist/web/archive/tar/index.d.ts"
+    },
+    "./web/archive/zip": {
+      "default": "dist/web/archive/zip/index.js",
+      "types": "dist/web/archive/zip/index.d.ts"
+    },
+    "./web/compression/gzip": {
+      "default": "dist/web/compression/gzip/index.js",
+      "types": "dist/web/compression/gzip/index.d.ts"
+    },
+    "./web/compression/brotli": {
+      "default": "dist/web/compression/brotli/index.js",
+      "types": "dist/web/compression/brotli/index.d.ts"
+    },
+    "./web/compression/zip": {
+      "default": "dist/web/compression/zip/index.js",
+      "types": "dist/web/compression/zip/index.d.ts"
+    },
+    "./registry": {
+      "default": "registry.json",
+      "types": "registry.json"
+    },
+    "./registry.json": {
+      "default": "registry.json"
+    }
+  },
+  "files": [
+    "dist",
+    "registry.json",
+    "README.md",
+    "LICENSE",
+    "registry.json"
+  ],
+  "keywords": [
+    "wasm",
+    "compression",
+    "archive",
+    "gzip",
+    "brotli",
+    "zip",
+    "tar",
+    "webassembly",
+    "performance"
+  ],
+  "author": "ZamDev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zamdevio/droply.git",
+    "directory": "wasm/packages/plugins"
+  },
+  "bugs": {
+    "url": "https://github.com/zamdevio/droply/issues"
+  },
+  "homepage": "https://github.com/zamdevio/droply#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "pack": "npm pack",
+    "publish-all": "python3 ../../scripts/publish-plugins.py",
+    "publish": "python3 ../../scripts/publish-plugins.py",
+    "build": "../../build.sh"
+  },
+  "devDependencies": {
+    "@droply/plugins": "^2.0.2"
+  }
+}

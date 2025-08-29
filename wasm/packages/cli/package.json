@@ -1,0 +1,62 @@
+{
+  "name": "@droply/cli",
+  "version": "0.2.0",
+  "description": "Command-line interface for Droply compression and archive operations",
+  "type": "commonjs",
+  "private": false,
+  "main": "./dist/droply.js",
+  "bin": {
+    "droply": "./dist/droply.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "cli",
+    "compression",
+    "archive",
+    "gzip",
+    "brotli",
+    "zip",
+    "tar",
+    "command-line"
+  ],
+  "author": "ZamDev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zamdevio/droply.git",
+    "directory": "wasm/packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/zamdevio/droply/issues"
+  },
+  "homepage": "https://github.com/zamdevio/droply#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsup src/droply.ts src/meta/*.ts src/help/*.ts src/conflicts/*.ts --format cjs --out-dir dist",
+    "dev": "tsx src/droply.ts --help",
+    "pack": "npm pack",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@droply/cli": "^0.1.0",
+    "@droply/sdk": "^0.1.1",
+    "chalk": "^5.3.0",
+    "colorette": "^2.0.20",
+    "commander": "^12.0.0",
+    "ora": "^8.0.1"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0"
+  }
+}

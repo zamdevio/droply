@@ -1,0 +1,52 @@
+{
+  "name": "droply-wasm-workspace",
+  "version": "0.1.0",
+  "description": "Droply WASM SDK workspace - compression and archive tools",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "build:wasm": "bash scripts/build-wasm.sh",
+    "build": "bash build.sh",
+    "dev:cli": "npm run -w @droply/cli dev",
+    "test": "npm -ws test",
+    "build:all": "npm run build && npm run build:sdk && npm run build:cli",
+    "build:sdk": "npm run build -w @droply/sdk",
+    "build:cli": "npm run build -w @droply/cli",
+    "clean": "rm -rf packages/*/dist packages/*/build packages/*/build-node",
+    "validate": "node scripts/validate.js",
+    "pack": "npm run pack -w @droply/plugins && npm run pack -w @droply/sdk && npm run pack -w @droply/cli",
+    "publish:dry": "npm run build:all && npm run validate && npm run pack"
+  },
+  "keywords": [
+    "wasm",
+    "compression",
+    "archive",
+    "webassembly",
+    "rust",
+    "typescript",
+    "sdk",
+    "cli"
+  ],
+  "author": "ZamDev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zamdevio/droply.git",
+    "directory": "wasm"
+  },
+  "bugs": {
+    "url": "https://github.com/zamdevio/droply/issues"
+  },
+  "homepage": "https://github.com/zamdevio/droply#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.0"
+  }
+}

@@ -1,0 +1,27 @@
+[package]
+name = "droply-archive-zip"
+version = "0.1.0"
+edition = "2021"
+
+[package.metadata.droply]
+type = "archive"
+format = "zip"
+extensions = ["zip"]
+description = "ZIP archive format"
+features = ["compress-inside", "metadata-embedding"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+serde = { version = "1", features = ["derive"] }
+serde-wasm-bindgen = "0.6"
+js-sys = "0.3"
+crc32fast = "1"
+flate2 = { version = "1.0", default-features = false, features = ["rust_backend"] }
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1

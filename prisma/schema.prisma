@@ -1,0 +1,121 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model File {
+  id            String   @id @default(cuid())
+  // R2 location
+  bucket        String
+  key           String   // e.g. "files/<id>/<slug>.<ext>"
+  // meta
+  originalName  String
+  contentType   String
+  sizeBytes     BigInt
+  checksum      String?  // sha256 hex, optional but useful for dedupe
+  passwordHash  String?  // argon2/bcrypt
+  maxDownloads  Int?     // optional download cap
+  downloads     Int      @default(0)
+  isPublic      Boolean  @default(true)
+  expiresAt     DateTime?
+  lastAccessAt  DateTime? @db.Timestamptz(6)
+  status        FileStatus @default(ACTIVE)
+  // ownership (optional)
+  ownerId       String?   // anonymous use: null
+  // multiple file metadata (for ZIP uploads)
+  meta          Json?     // FileMeta[] when multiple files, null for single files
+  // 🔥 NEW: Compression pipeline fields
+  isCompressed  Boolean   @default(false)
+  compressionAlgo String? // 'zip', 'zstd', 'brotli', etc.
+  originalSize  BigInt?  // Size before compression
+  compressionRatio Float? // Compression ratio (0.0-1.0)
+  // housekeeping
+  createdAt     DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime @updatedAt @db.Timestamptz(6)
+  deletedAt     DateTime? @db.Timestamptz(6)
+
+  // Relations
+  accessLogs    AccessLog[]
+  uploadSessions UploadSession[]
+
+  @@index([key])
+  @@index([expiresAt])
+  @@index([status])
+  @@index([ownerId])
+  @@index([createdAt])
+  @@index([passwordHash]) // For password-based ownership checks
+  @@index([status, expiresAt]) // For cleanup queries
+  @@index([status, passwordHash]) // For password-protected file queries
+  @@index([checksum]) // For checksum-based deduplication and lookups
+  @@index([isCompressed]) // For compression-aware queries
+  @@index([compressionAlgo]) // For algorithm-specific queries
+}
+
+enum FileStatus {
+  ACTIVE
+  EXPIRED
+  DELETED
+  BLOCKED
+}
+
+model AccessLog {
+  id        BigInt   @id @default(autoincrement())
+  fileId    String
+  event     AccessEvent
+  ip        String
+  ua        String?
+  ok        Boolean
+  reason    String?    // e.g. "expired", "bad_password"
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+
+  file      File   @relation(fields: [fileId], references: [id], onDelete: Cascade)
+
+  @@index([fileId, createdAt])
+  @@index([ip, createdAt])
+}
+
+enum AccessEvent {
+  UPLOAD
+  INFO
+  DOWNLOAD
+  DELETE
+  EDIT
+}
+
+model UploadSession {
+  id          String   @id @default(cuid())
+  fileId      String?  // filled after successful commit
+  ip          String
+  startedAt   DateTime @default(now())
+  committedAt DateTime?
+  status      UploadStatus @default(PENDING)
+  bytesSeen   BigInt   @default(0)
+  error       String?
+
+  // Relations
+  file        File?    @relation(fields: [fileId], references: [id])
+
+  @@index([status, startedAt])
+}
+
+enum UploadStatus {
+  PENDING
+  COMMITTED
+  FAILED
+  ABORTED
+}
+
+model ApiKey {
+  id        String   @id @default(cuid())
+  name      String
+  keyHash   String   // HMAC of the key; never store plaintext
+  createdAt DateTime @default(now())
+  active    Boolean  @default(true)
+
+  @@index([active])
+  @@unique([keyHash])
+}

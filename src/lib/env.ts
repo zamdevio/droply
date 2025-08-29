@@ -1,4 +1,7 @@
 export const env = {
+  database: {
+    url: process.env.DATABASE_URL || null,
+  },
   r2: {
     accountId: process.env.R2_ACCOUNT_ID || "demo",
     accessKeyId: process.env.R2_ACCESS_KEY_ID || "demo",
@@ -13,3 +16,6 @@ export const env = {
     allowedMimePrefixes: (process.env.ALLOWED_MIME_PREFIXES || "image/,application/pdf,video/").split(","),
   }
 };
+
+// Check if we're in demo mode
+export const isDemoMode = !env.database.url || env.r2.accountId === "demo";

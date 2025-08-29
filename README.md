@@ -1,165 +1,183 @@
-# README.md
+# Droply Monorepo 🚀
 
-> **Droply** — Anonymous file sharing, no strings attached.
->
-> UI on Vercel. Storage on Cloudflare R2 (10GB free).
->
-> **🚀 Now with Next.js App Router!**
+Fast compression and archiving with WASM - cross-platform, SDK-ready, and CLI-powered.
 
-## Features (MVP)
-- Drag & drop upload (no auth)
-- Shareable links: `/download/:id`, `/delete/:id`, `/edit/:id`
-- Metadata stored per file (JSON)
-- Auto‑cleanup: if new upload would exceed the 9GB budget, delete oldest files until it fits
-- API input/response validation (zod)
-- **Demo mode** - works immediately without setup!
+## 🏗️ Architecture
 
-## Tech
-- **Next.js 14+ (App Router)** ✅
-- TypeScript
-- Cloudflare R2 (S3‑compatible)
-- zod for schemas
-- Tailwind CSS
+```
+droply/
+├─ crates/                          # Rust source only (no build artifacts)
+│  ├─ archive/{zip,tar}/
+│  └─ compression/{zip,gzip,brotli}/
+├─ packages/
+│  ├─ sdk/                          # @droply/sdk (browser + node, typed)
+│  ├─ cli/                          # @droply/cli (bin: droply)
+│  └─ plugins/                      # runtime-loadable wasm builds + registry
+├─ scripts/
+│  ├─ build-wasm.sh                 # builds crates → packages/plugins/build/*
+│  └─ conformance.sh                # run cross-tool tests
+└─ tests/
+    └─ conformance/                  # golden vectors + zip/tar/gzip/brotli comparisons
+```
 
----
+## 🚀 Quick Start
 
-## 🚀 Quick Start (Demo Mode)
+### Prerequisites
 
-The app works immediately in demo mode - no setup required!
+- **Node.js** 18+ and **pnpm**
+- **Rust** toolchain with **wasm-pack**
+- **System tools** for conformance testing (unzip, gzip, tar)
+
+### Install & Build
 
 ```bash
-# 1. Install dependencies
-npm install
+# Install dependencies
+pnpm install
 
-# 2. Start development server
-npm run dev
+# Build WASM modules
+pnpm build:wasm
 
-# 3. Visit http://localhost:3000
+# Build SDK and CLI packages
+pnpm build:all
+
+# Run conformance tests
+pnpm test:conformance
 ```
 
-**Demo mode features:**
-- ✅ File upload simulation
-- ✅ Download simulation  
-- ✅ Delete simulation
-- ✅ Edit metadata simulation
-- ✅ All UI functionality works
-- ✅ No external services needed
+### Use the CLI
 
----
-
-## Folder Structure (App Router)
-```
- droply/
- ├─ .github/workflows/ci.yml
- ├─ public/
- ├─ src/
- │  ├─ app/                        # App Router
- │  │  ├─ layout.tsx              # Root layout
- │  │  ├─ page.tsx                # Home page
- │  │  ├─ download/[id]/          # Download page
- │  │  ├─ delete/[id]/            # Delete page
- │  │  ├─ edit/[id]/              # Edit page
- │  │  └─ api/                    # API routes
- │  │     ├─ upload/route.ts      # Upload API
- │  │     ├─ download/[id]/       # Download API
- │  │     ├─ delete/[id]/         # Delete API
- │  │     └─ edit/[id]/           # Edit API
- │  ├─ middleware.ts
- │  ├─ lib/
- │  │  ├─ env.ts                  # Environment config
- │  │  ├─ r2.ts                   # R2 client + helpers
- │  │  ├─ id.ts                   # ID generation
- │  │  └─ schemas.ts              # Zod validation
- │  └─ styles/globals.css
- ├─ setup.sh                      # Linux/Mac setup
- ├─ setup.bat                     # Windows setup
- ├─ DEPLOYMENT.md                 # Production guide
- └─ README.md (this file)
-```
-
----
-
-## Environment (.env)
-
-**For Demo Mode (Default):**
-```
-# Leave empty for demo mode
-R2_ACCOUNT_ID=
-R2_ACCESS_KEY_ID=
-R2_SECRET_ACCESS_KEY=
-R2_BUCKET_NAME=droply
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-MAX_FILE_BYTES=104857600
-ALLOWED_MIME_PREFIXES=image/,application/pdf,video/
-```
-
-**For Production:**
-```
-R2_ACCOUNT_ID=your_account_id
-R2_ACCESS_KEY_ID=your_access_key
-R2_SECRET_ACCESS_KEY=your_secret_key
-R2_BUCKET_NAME=droply
-NEXT_PUBLIC_APP_URL=https://your-app.vercel.app
-MAX_FILE_BYTES=104857600
-ALLOWED_MIME_PREFIXES=image/,application/pdf,video/
-```
-
----
-
-## 🎯 What's New in App Router Version
-
-1. **Modern Next.js Architecture** - Uses the latest App Router
-2. **Demo Mode** - Works immediately without external services
-3. **Simplified Setup** - No Redis or complex configuration needed
-4. **Better Performance** - App Router optimizations
-5. **Cleaner Code** - Modern React patterns and hooks
-
----
-
-## Git & GitHub quick start
 ```bash
-# 1) create repo locally
-mkdir droply && cd droply
-# (paste this project content here)
-git init -b main
-cp env.example .env
-# .env is ready for demo mode!
+# Compress a file
+pnpm -C packages/cli exec droply compress input.txt --algo deflate --archive zip
 
-# 2) first commit
-git add .
-git commit -m "feat: Droply with App Router + demo mode"
+# Decompress an archive
+pnpm -C packages/cli exec droply decompress archive.zip
 
-# 3) create GitHub repo then push
-git remote add origin git@github.com:<you>/droply.git
-git push -u origin main
-
-# 4) Vercel deploy (optional)
-# - Import the repo on vercel.com
-# - Add env vars from .env for production
+# List archive contents
+pnpm -C packages/cli exec droply list archive.zip --json
 ```
 
+### Use the SDK
+
+```typescript
+import { compress, decompress } from '@droply/sdk';
+
+// Compress data
+const result = await compress({
+  input: new Uint8Array([...]),
+  algo: 'deflate',
+  archive: 'zip',
+  level: 6
+});
+
+// Decompress archive
+const files = await decompress({
+  input: result.bytes
+});
+```
+
+## 📦 Packages
+
+### @droply/sdk
+Cross-platform compression SDK with TypeScript support.
+
+- **Browser**: WASM-powered with Web Worker support
+- **Node.js**: Native streams + WASM fallback
+- **Exports**: ESM + CJS with automatic environment detection
+
+### @droply/cli
+Command-line interface with pretty logging and progress bars.
+
+- **Commands**: `compress`, `decompress`, `list`
+- **Formats**: ZIP, TAR, GZIP, Brotli
+- **Output**: Human-readable, JSON, verbose modes
+
+### @droply/plugins
+WASM module registry and runtime loader.
+
+- **Modules**: Archive and compression WASM builds
+- **Registry**: JSON manifest with module metadata
+- **Loading**: Dynamic import with fallback chains
+
+## 🔧 Development
+
+### Build Commands
+
+```bash
+pnpm build:wasm      # Build Rust crates to WASM
+pnpm build:sdk       # Build SDK package
+pnpm build:cli       # Build CLI package
+pnpm build:all       # Build everything
+```
+
+### Development Mode
+
+```bash
+pnpm dev:cli         # Watch CLI for changes
+pnpm -C packages/sdk dev  # Watch SDK for changes
+```
+
+### Testing
+
+```bash
+pnpm test            # Run all tests
+pnpm test:conformance # Run cross-tool verification
+```
+
+## 🎯 Roadmap
+
+- [x] Monorepo structure with pnpm workspaces
+- [x] SDK with environment-aware exports
+- [x] CLI with pretty logging and progress bars
+- [x] Plugin system for WASM modules
+- [x] Conformance testing framework
+- [ ] WASM module integration (currently mock implementations)
+- [ ] Python wrapper (maturin)
+- [ ] Next.js example app
+- [ ] Performance benchmarks
+- [ ] CI/CD pipeline
+
+## 📚 API Reference
+
+### Compression Options
+
+```typescript
+interface CompressOpts {
+  input: Uint8Array | ArrayBuffer | ReadableStream<Uint8Array>;
+  algo: 'deflate' | 'gzip' | 'brotli';
+  archive?: 'zip' | 'tar' | null;
+  level?: number;               // 0-11, clamped per algorithm
+  filenames?: string[];         // for multi-file inputs
+  compressInside?: boolean;     // archive entries compressed vs outer-only
+  onProgress?: (p: {bytes: number; total?: number}) => void;
+}
+```
+
+### Decompression Options
+
+```typescript
+interface DecompressOpts {
+  input: Uint8Array | ArrayBuffer | ReadableStream<Uint8Array>;
+  formatHint?: { 
+    archive?: 'zip' | 'tar', 
+    algo?: 'gzip' | 'brotli' | 'deflate' 
+  };
+  onProgress?: (p: {bytes: number; total?: number}) => void;
+}
+```
+
+## 🤝 Contributing
+
+1. **Fork** the repository
+2. **Create** a feature branch
+3. **Make** your changes
+4. **Test** with conformance suite
+5. **Submit** a pull request
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
 ---
 
-## 🚀 Production Deployment
-
-When you're ready for production:
-
-1. **Get Cloudflare R2 credentials** (see DEPLOYMENT.md)
-2. **Update .env** with real credentials
-3. **Deploy to Vercel** following DEPLOYMENT.md
-
-The app automatically switches from demo mode to production mode when real credentials are provided.
-
----
-
-### What's Ready Now ✅
-
-- ✅ **App Router** implementation
-- ✅ **Demo mode** - works immediately
-- ✅ **File upload** simulation
-- ✅ **Download/Delete/Edit** simulation
-- ✅ **Modern UI** with Tailwind CSS
-- ✅ **TypeScript** throughout
-- ✅ **Production ready** when credentials added
-
-— Ready to run! 🎉 —
+**Droply** - Because compression should be fast, portable, and developer-friendly. 🚀

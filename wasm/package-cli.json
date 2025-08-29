@@ -1,0 +1,60 @@
+{
+  "name": "@droply/cli",
+  "version": "1.0.0",
+  "description": "Command-line interface for Droply compression and archiving SDK",
+  "main": "dist/cli.js",
+  "bin": {
+    "droply": "./dist/cli.js"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "npm run build:wasm && npm run build:ts",
+    "build:wasm": "../build.sh",
+    "build:ts": "tsc && rollup -c rollup.config.js",
+    "prepublishOnly": "npm run clean && npm run build",
+    "clean": "rm -rf dist",
+    "start": "node dist/cli.js",
+    "dev": "npx tsx bin/droply.ts"
+  },
+  "keywords": [
+    "cli",
+    "compression",
+    "archiving",
+    "webassembly",
+    "wasm",
+    "gzip",
+    "brotli",
+    "zip",
+    "tar",
+    "command-line"
+  ],
+  "author": "Droply Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zamdev/droply.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zamdev/droply/issues"
+  },
+  "homepage": "https://github.com/zamdev/droply#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "@droply/core": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0"
+  },
+  "peerDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "plugins": [
+    {
+      "platform": "bundler",
+      "kind": "archive",
+      "algo": "tar",
+      "subpath": "./bundler/archive/tar",
+      "package": "@droply/plugins-bundler-archive-tar",
+      "entry": "./bundler/archive/tar",
+      "files": {
+        "js": "dist/bundler/archive/tar/index.js",
+        "types": "dist/bundler/archive/tar/index.d.ts",
+        "wasm": "dist/bundler/archive/tar/plugin.wasm"
+      }
+    },
+    {
+      "platform": "bundler",
+      "kind": "archive",
+      "algo": "zip",
+      "subpath": "./bundler/archive/zip",
+      "package": "@droply/plugins-bundler-archive-zip",
+      "entry": "./bundler/archive/zip",
+      "files": {
+        "js": "dist/bundler/archive/zip/index.js",
+        "types": "dist/bundler/archive/zip/index.d.ts",
+        "wasm": "dist/bundler/archive/zip/plugin.wasm"
+      }
+    },
+    {
+      "platform": "bundler",
+      "kind": "compression",
+      "algo": "brotli",
+      "subpath": "./bundler/compression/brotli",
+      "package": "@droply/plugins-bundler-compression-brotli",
+      "entry": "./bundler/compression/brotli",
+      "files": {
+        "js": "dist/bundler/compression/brotli/index.js",
+        "types": "dist/bundler/compression/brotli/index.d.ts",
+        "wasm": "dist/bundler/compression/brotli/plugin.wasm"
+      }
+    },
+    {
+      "platform": "bundler",
+      "kind": "compression",
+      "algo": "gzip",
+      "subpath": "./bundler/compression/gzip",
+      "package": "@droply/plugins-bundler-compression-gzip",
+      "entry": "./bundler/compression/gzip",
+      "files": {
+        "js": "dist/bundler/compression/gzip/index.js",
+        "types": "dist/bundler/compression/gzip/index.d.ts",
+        "wasm": "dist/bundler/compression/gzip/plugin.wasm"
+      }
+    },
+    {
+      "platform": "bundler",
+      "kind": "compression",
+      "algo": "zip",
+      "subpath": "./bundler/compression/zip",
+      "package": "@droply/plugins-bundler-compression-zip",
+      "entry": "./bundler/compression/zip",
+      "files": {
+        "js": "dist/bundler/compression/zip/index.js",
+        "types": "dist/bundler/compression/zip/index.d.ts",
+        "wasm": "dist/bundler/compression/zip/plugin.wasm"
+      }
+    },
+    {
+      "platform": "nodejs",
+      "kind": "archive",
+      "algo": "tar",
+      "subpath": "./nodejs/archive/tar",
+      "package": "@droply/plugins-nodejs-archive-tar",
+      "entry": "./nodejs/archive/tar",
+      "files": {
+        "js": "dist/nodejs/archive/tar/index.js",
+        "types": "dist/nodejs/archive/tar/index.d.ts",
+        "wasm": "dist/nodejs/archive/tar/plugin.wasm"
+      }
+    },
+    {
+      "platform": "nodejs",
+      "kind": "archive",
+      "algo": "zip",
+      "subpath": "./nodejs/archive/zip",
+      "package": "@droply/plugins-nodejs-archive-zip",
+      "entry": "./nodejs/archive/zip",
+      "files": {
+        "js": "dist/nodejs/archive/zip/index.js",
+        "types": "dist/nodejs/archive/zip/index.d.ts",
+        "wasm": "dist/nodejs/archive/zip/plugin.wasm"
+      }
+    },
+    {
+      "platform": "nodejs",
+      "kind": "compression",
+      "algo": "brotli",
+      "subpath": "./nodejs/compression/brotli",
+      "package": "@droply/plugins-nodejs-compression-brotli",
+      "entry": "./nodejs/compression/brotli",
+      "files": {
+        "js": "dist/nodejs/compression/brotli/index.js",
+        "types": "dist/nodejs/compression/brotli/index.d.ts",
+        "wasm": "dist/nodejs/compression/brotli/plugin.wasm"
+      }
+    },
+    {
+      "platform": "nodejs",
+      "kind": "compression",
+      "algo": "gzip",
+      "subpath": "./nodejs/compression/gzip",
+      "package": "@droply/plugins-nodejs-compression-gzip",
+      "entry": "./nodejs/compression/gzip",
+      "files": {
+        "js": "dist/nodejs/compression/gzip/index.js",
+        "types": "dist/nodejs/compression/gzip/index.d.ts",
+        "wasm": "dist/nodejs/compression/gzip/plugin.wasm"
+      }
+    },
+    {
+      "platform": "nodejs",
+      "kind": "compression",
+      "algo": "zip",
+      "subpath": "./nodejs/compression/zip",
+      "package": "@droply/plugins-nodejs-compression-zip",
+      "entry": "./nodejs/compression/zip",
+      "files": {
+        "js": "dist/nodejs/compression/zip/index.js",
+        "types": "dist/nodejs/compression/zip/index.d.ts",
+        "wasm": "dist/nodejs/compression/zip/plugin.wasm"
+      }
+    },
+    {
+      "platform": "web",
+      "kind": "archive",
+      "algo": "tar",
+      "subpath": "./web/archive/tar",
+      "package": "@droply/plugins-web-archive-tar",
+      "entry": "./web/archive/tar",
+      "files": {
+        "js": "dist/web/archive/tar/index.js",
+        "types": "dist/web/archive/tar/index.d.ts",
+        "wasm": "dist/web/archive/tar/plugin.wasm"
+      }
+    },
+    {
+      "platform": "web",
+      "kind": "archive",
+      "algo": "zip",
+      "subpath": "./web/archive/zip",
+      "package": "@droply/plugins-web-archive-zip",
+      "entry": "./web/archive/zip",
+      "files": {
+        "js": "dist/web/archive/zip/index.js",
+        "types": "dist/web/archive/zip/index.d.ts",
+        "wasm": "dist/web/archive/zip/plugin.wasm"
+      }
+    },
+    {
+      "platform": "web",
+      "kind": "compression",
+      "algo": "brotli",
+      "subpath": "./web/compression/brotli",
+      "package": "@droply/plugins-web-compression-brotli",
+      "entry": "./web/compression/brotli",
+      "files": {
+        "js": "dist/web/compression/brotli/index.js",
+        "types": "dist/web/compression/brotli/index.d.ts",
+        "wasm": "dist/web/compression/brotli/plugin.wasm"
+      }
+    },
+    {
+      "platform": "web",
+      "kind": "compression",
+      "algo": "gzip",
+      "subpath": "./web/compression/gzip",
+      "package": "@droply/plugins-web-compression-gzip",
+      "entry": "./web/compression/gzip",
+      "files": {
+        "js": "dist/web/compression/gzip/index.js",
+        "types": "dist/web/compression/gzip/index.d.ts",
+        "wasm": "dist/web/compression/gzip/plugin.wasm"
+      }
+    },
+    {
+      "platform": "web",
+      "kind": "compression",
+      "algo": "zip",
+      "subpath": "./web/compression/zip",
+      "package": "@droply/plugins-web-compression-zip",
+      "entry": "./web/compression/zip",
+      "files": {
+        "js": "dist/web/compression/zip/index.js",
+        "types": "dist/web/compression/zip/index.d.ts",
+        "wasm": "dist/web/compression/zip/plugin.wasm"
+      }
+    }
+  ]
+}

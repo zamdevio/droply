@@ -1,0 +1,22 @@
+{
+  "buildTime": "2025-08-25T23:19:01Z",
+  "rustVersion": "rustc 1.89.0 (29483883e 2025-08-04)",
+  "wasmPackVersion": "wasm-pack 0.13.1",
+  "pluginTypes": ["archive", "compression"],
+  "targets": {
+    "bundler": {
+      "totalPlugins": 5,
+      "pluginTypes": {
+        "archive": 2,
+        "compression": 3
+      }
+    },
+    "node": {
+      "totalPlugins": 5,
+      "pluginTypes": {
+        "archive": 2,
+        "compression": 3
+      }
+    }
+  }
+}

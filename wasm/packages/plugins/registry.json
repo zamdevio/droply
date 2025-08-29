@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "platforms": {
+    "nodejs": {
+      "compression": {
+        "gzip": {
+          "name": "droply-compression-gzip",
+          "version": "0.1.0",
+          "description": "Gzip compression algorithm",
+          "extensions": [
+            "gz"
+          ],
+          "compression_levels": {
+            "min": 0,
+            "max": 9,
+            "default": 6
+          },
+          "paths": {
+            "wasm": "./compression/gzip/module.js",
+            "module": "./compression/gzip/package.json",
+            "types": "./compression/gzip/index.d.ts"
+          }
+        },
+        "brotli": {
+          "name": "droply-compression-brotli",
+          "version": "0.1.0",
+          "description": "Brotli compression algorithm",
+          "extensions": [
+            "br"
+          ],
+          "compression_levels": {
+            "min": 0,
+            "max": 11,
+            "default": 6
+          },
+          "paths": {
+            "wasm": "./compression/brotli/module.js",
+            "module": "./compression/brotli/package.json",
+            "types": "./compression/brotli/index.d.ts"
+          }
+        },
+        "zip": {
+          "name": "droply-compression-zip",
+          "version": "0.1.0",
+          "description": "Single-entry ZIP (store/deflate) as a compression-only codec",
+          "extensions": [
+            "zip"
+          ],
+          "compression_levels": {
+            "min": 0,
+            "max": 9,
+            "default": 6
+          },
+          "paths": {
+            "wasm": "./compression/zip/module.js",
+            "module": "./compression/zip/package.json",
+            "types": "./compression/zip/index.d.ts"
+          }
+        }
+      },
+      "archives": {
+        "tar": {
+          "name": "droply-archive-tar",
+          "version": "0.1.0",
+          "description": "TAR archive format",
+          "extensions": [
+            "tar"
+          ],
+          "features": [
+            "metadata-embedding"
+          ],
+          "paths": {
+            "wasm": "./archive/tar/module.js",
+            "module": "./archive/tar/package.json",
+            "types": "./archive/tar/index.d.ts"
+          }
+        },
+        "zip": {
+          "name": "droply-archive-zip",
+          "version": "0.1.0",
+          "description": "ZIP archive format",
+          "extensions": [
+            "zip"
+          ],
+          "features": [
+            "compress-inside",
+            "metadata-embedding"
+          ],
+          "paths": {
+            "wasm": "./archive/zip/module.js",
+            "module": "./archive/zip/package.json",
+            "types": "./archive/zip/index.d.ts"
+          }
+        }
+      },
+      "metadata": {
+        "generated_at": "2025-08-25T23:19:01Z",
+        "total_plugins": 5
+      }
+    },
+    "bundler": {
+      "compression": {
+        "gzip": {
+          "name": "droply-compression-gzip",
+          "version": "0.1.0",
+          "description": "Gzip compression algorithm",
+          "extensions": [
+            "gz"
+          ],
+          "compression_levels": {
+            "min": 0,
+            "max": 9,
+            "default": 6
+          },
+          "paths": {
+            "wasm": "./compression/gzip/module.js",
+            "module": "./compression/gzip/package.json",
+            "types": "./compression/gzip/index.d.ts"
+          }
+        },
+        "brotli": {
+          "name": "droply-compression-brotli",
+          "version": "0.1.0",
+          "description": "Brotli compression algorithm",
+          "extensions": [
+            "br"
+          ],
+          "compression_levels": {
+            "min": 0,
+            "max": 11,
+            "default": 6
+          },
+          "paths": {
+            "wasm": "./compression/brotli/module.js",
+            "module": "./compression/brotli/package.json",
+            "types": "./compression/brotli/index.d.ts"
+          }
+        },
+        "zip": {
+          "name": "droply-compression-zip",
+          "version": "0.1.0",
+          "description": "Single-entry ZIP (store/deflate) as a compression-only codec",
+          "extensions": [
+            "zip"
+          ],
+          "compression_levels": {
+            "min": 0,
+            "max": 9,
+            "default": 6
+          },
+          "paths": {
+            "wasm": "./compression/zip/module.js",
+            "module": "./compression/zip/package.json",
+            "types": "./compression/zip/index.d.ts"
+          }
+        }
+      },
+      "archives": {
+        "tar": {
+          "name": "droply-archive-tar",
+          "version": "0.1.0",
+          "description": "TAR archive format",
+          "extensions": [
+            "tar"
+          ],
+          "features": [
+            "metadata-embedding"
+          ],
+          "paths": {
+            "wasm": "./archive/tar/module.js",
+            "module": "./archive/tar/package.json",
+            "types": "./archive/tar/index.d.ts"
+          }
+        },
+        "zip": {
+          "name": "droply-archive-zip",
+          "version": "0.1.0",
+          "description": "ZIP archive format",
+          "extensions": [
+            "zip"
+          ],
+          "features": [
+            "compress-inside",
+            "metadata-embedding"
+          ],
+          "paths": {
+            "wasm": "./archive/zip/module.js",
+            "module": "./archive/zip/package.json",
+            "types": "./archive/zip/index.d.ts"
+          }
+        }
+      },
+      "metadata": {
+        "generated_at": "2025-08-25T23:19:01Z",
+        "total_plugins": 5
+      }
+    }
+  },
+  "metadata": {
+    "generated_at": "2025-08-25T23:19:01Z",
+    "total_plugins": 5
+  }
+}

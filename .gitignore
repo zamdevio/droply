@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+# wasm
+/wasm/pkg
+/wasm/target
+
 # next.js
 /.next/
 /out/
@@ -25,8 +29,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
-.env
+#.env*.local
+#.env
 
 # vercel
 .vercel

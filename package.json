@@ -1,28 +1,23 @@
 {
-  "name": "droply",
+  "name": "droply-monorepo",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint ."
-  },
-  "dependencies": {
-    "@aws-sdk/client-s3": "^3.650.0",
-    "next": "^14.2.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "zod": "^3.23.8"
+    "build:wasm": "bash wasm/build.sh",
+    "build:sdk": "pnpm -C packages/sdk build",
+    "build:cli": "pnpm -C packages/cli build",
+    "build:all": "pnpm build:wasm && pnpm -r --filter ./packages/* build",
+    "dev:cli": "pnpm -C packages/cli dev",
+    "test": "pnpm -r test",
+    "test:conformance": "bash wasm/scripts/conformance.sh"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
+    "prisma": "^6.14.0",
+    "tsup": "^8.5.0",
     "typescript": "^5.0.0",
-    "eslint": "^8.0.0",
-    "eslint-config-next": "^14.2.5",
-    "tailwindcss": "^3.4.0",
-    "autoprefixer": "^10.4.0",
-    "postcss": "^8.4.0"
+    "zx": "^8.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.14.0"
   }
 }

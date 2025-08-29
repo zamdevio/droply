@@ -1,0 +1,75 @@
+{
+  "name": "@droply/web",
+  "version": "2.0",
+  "description": "Web-optimized Droply SDK with WASM compression and archive support",
+  "type": "module",
+  "private": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./wasm": {
+      "types": "./dist/wasm.d.ts",
+      "import": "./dist/wasm.js",
+      "default": "./dist/wasm.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "compression",
+    "archive",
+    "wasm",
+    "web",
+    "browser",
+    "gzip",
+    "brotli",
+    "zip",
+    "tar",
+    "sdk",
+    "typescript"
+  ],
+  "author": "ZamDev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zamdevio/droply.git",
+    "directory": "wasm/packages/web"
+  },
+  "bugs": {
+    "url": "https://github.com/zamdevio/droply/issues"
+  },
+  "homepage": "https://github.com/zamdevio/droply#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/wasm.ts --dts --format esm --out-dir dist",
+    "dev": "tsup src/index.ts --watch --dts --format esm --out-dir dist",
+    "pack": "npm pack",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0"
+  },
+  "dependencies": {
+    "@droply/sdk": "^3.0.0",
+    "@droply/plugins": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@droply/sdk": "^3.0.0",
+    "@droply/plugins": "^3.0.0"
+  }
+}

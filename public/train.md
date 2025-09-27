@@ -21,7 +21,7 @@ We treat **Putrajaya Sentral** as the home base. From here, both unis are connec
 
 ---
 
-##  UniKL MIAT (Salak Tinggi)
+##  UniKL MIAT (Dengkii)
 
 * **Nearest station:** Salak Tinggi ERL  
 * **Train line:** KLIA Transit (ERL) → Direct from Putrajaya Sentral  

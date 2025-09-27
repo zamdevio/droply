@@ -38,9 +38,9 @@ We treat **Putrajaya Sentral** as the home base. From here, both unis are connec
 * **Travel time:** ~9 minutes (train)
 * **Last mile:** 5–10 min taxi / Grab (≈ 7.5 km)
 * **Estimated total time:** ~15–20 minutes
-* **Train fare (one-way, adult normal)**: RM4.90
+* **Train fare (one-way, adult normal)**:
 
-  * ERL Putrajaya → Salak Tinggi: RM6.20
+  * ERL Putrajaya → Salak Tinggi: RM4.90
   * Grab: RM7–12 (shared / off-peak)
 
 ---

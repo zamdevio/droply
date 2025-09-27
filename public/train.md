@@ -1,20 +1,3 @@
-# 🏠 Housing Choice: Furnished vs Unfurnished
-
-If we take a **furnished unit**, we’ll be paying higher rent every month just for furniture.
-Example: **+RM600/month** → that’s **RM21,600 gone in 3 years**. And when we move out, we own nothing.
-
-If we rent **unfurnished**, we spend around **RM10k upfront** to buy our own stuff, use it comfortably, and later **resell 60–70%**. That way, we save money long-term and still keep value instead of burning cash.
-
-**Slangy Reality Check:**
-
-1. RM21k in 3 years for someone else’s sofa? **Nah fam.**
-2. Furnished = **landlord’s furniture tax 💀**
-3. Extra RM600/month → **RM21k**, better to buy + sell later.
-4. Paying for furniture you don’t keep = **zero gain.**
-5. Bro, RM21k boleh jadi **kereta second hand** already.
-6. RM21k down the drain vs **buy-and-resell = no contest.**
-
----
 # 🚆 Transport Access (From Putrajaya Sentral Base)
 
 We treat **Putrajaya Sentral** as the home base. From here, both unis are connected via direct rail lines:

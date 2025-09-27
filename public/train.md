@@ -1,4 +1,3 @@
-
 # 🏠 Housing Choice: Furnished vs Unfurnished
 
 If we take a **furnished unit**, we’ll be paying higher rent every month just for furniture.
@@ -29,6 +28,10 @@ We treat **Putrajaya Sentral** as the home base. From here, both unis are connec
 * **Estimated total time:** ~15–20 minutes
 * **Estimated cost (one-way):** RM14.00  
 
+💸 **Monthly Cost (normal fare, 1 person):**  
+- Daily return = RM28  
+- 16 days/month = **RM448**
+
 ---
 
 ## 🎓 UniKL MIAT (Salak Tinggi)
@@ -39,9 +42,12 @@ We treat **Putrajaya Sentral** as the home base. From here, both unis are connec
 * **Last mile:** 5–10 min taxi / Grab (≈ 7.5 km)
 * **Estimated total time:** ~15–20 minutes
 * **Train fare (one-way, adult normal)**:
-
   * ERL Putrajaya → Salak Tinggi: RM4.90
   * Grab: RM7–12 (shared / off-peak)
+
+💸 **Monthly Cost (normal fare, 1 person, train only):**  
+- Daily return = RM9.80  
+- 16 days/month = **~RM157**
 
 ---
 

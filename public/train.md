@@ -27,7 +27,7 @@ We treat **Putrajaya Sentral** as the home base. From here, both unis are connec
 * **Travel time:** ~12 minutes (train)
 * **Last mile:** 5 min Uni bus to UCSI (≈ 1.5 km)
 * **Estimated total time:** ~15–20 minutes
-* **Estimated cost (one-way):** RM9.40 (ERL Putrajaya → BTS)
+* **Estimated cost (one-way):** RM14.00  
 
 ---
 
@@ -38,7 +38,7 @@ We treat **Putrajaya Sentral** as the home base. From here, both unis are connec
 * **Travel time:** ~9 minutes (train)
 * **Last mile:** 5–10 min taxi / Grab (≈ 7.5 km)
 * **Estimated total time:** ~15–20 minutes
-* **Estimated cost (one-way):**
+* **Train fare (one-way, adult normal)**: RM4.90
 
   * ERL Putrajaya → Salak Tinggi: RM6.20
   * Grab: RM7–12 (shared / off-peak)

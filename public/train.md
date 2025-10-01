@@ -2,7 +2,8 @@
 
 This section is for adding details later about **rental options, housing costs, facilities, and pros/cons** near Putrajaya Sentral, Cyberjaya, and uni areas.
 
-Home: The Place@Cyberjaya ([propertyguru](https://www.propertyguru.com.my/property-for-rent?listingType=rent&page=1&propertyId=7001&_freetextDisplay=The+Place+%40+Cyberjaya&isCommercial=false&bedrooms=2)) to the Presint 7 Putrajaya ERL Station ([Moovit.com](https://moovitapp.com/tripplan/kuala_lumpur-1082/poi/Presint%207/The%20Place@Cyberjaya,%20Sepang/itinerary/en?customerId=4908&ref=1&af_sub8=%2Findex%2Fen%2Fpublic_transit-Presint_7-Kuala_Lumpur-site_181065906-1082&af_sub9=Search%20bar%20button&poiType=site&abTest=V1-Destinations-1755070143&fll=2.937272_101.662388&tll=2.93034_101.672387&metroSeoName=Kuala_Lumpur))
+Home: The Place@Cyberjaya ([Property Guru](https://www.propertyguru.com.my/property-for-rent?listingType=rent&page=1&propertyId=7001&_freetextDisplay=The+Place+%40+Cyberjaya&isCommercial=false&bedrooms=2)). \
+The main trains station: Presint 7 Putrajaya ERL Station [Click Here](https://maps.app.goo.gl/1zasBLM6YYF78j8A9)
 
 ---
 

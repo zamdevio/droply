@@ -45,28 +45,19 @@ We treat **Putrajaya Sentral** as the home base. From here, both unis are connec
 
 ---
 
-##  Bus Connections (Putrajaya, Cyberjaya & KL)
+## MRT Connection (Cyberjaya → Putrajaya)
 
-###  Routes (from The Place@Cyberjaya → Presint 7 / ERL)
+### Route (from The Place@Cyberjaya → Presint 7 / ERL)
 
-| Step | Mode    | Route / Stop                                               | Time    | Fare (Normal / Student)   |
-| ---- | ------- | ---------------------------------------------------------- | ------- | ------------------------- |
-| 1    |  Walk | The Place → Limkokwing University (Opp bus stop).  Distance 440m           | 6 min   | -                      |
-| 2    |  Bus  | **T505 MRT Feeder** (Limkokwing Opp → MRT Cyberjaya Utara) | 6 min   | RM1.00 / RM0.50           |
-| 3    |  Walk | To MRT Cyberjaya Utara, Entrance A. Distance 140m                         | 2 min   | -                      |
-| 4    |  MRT  | Cyberjaya Utara → Putrajaya Sentral (2 stops)              | 5 min   | RM2.00–2.40 / RM1.00–1.20 |
-| 5    |  Walk | Putrajaya Sentral → Presint 7 ERL. Distance 220m                          | 3–5 min | -                      |
+| Step | Mode | Route / Stop                                                                  | Time    | Fare (Normal / Student)   |
+| ---- | ---- | ----------------------------------------------------------------------------- | ------- | ------------------------- |
+| 1    | Walk | The Place → **Cyberjaya City Centre MRT** (shortcut path). Distance ~300–400m | 3–5 min | -                         |
+| 2    | MRT  | **Cyberjaya City Centre → Putrajaya Sentral** (1 stop)                        | 3–4 min | RM1.40–1.60 / RM0.70–0.80 |
+| 3    | Walk | Putrajaya Sentral MRT → Presint 7 ERL. Distance ~220m                         | 3–5 min | -                         |
 
-**Total Time:** ~25–30 min\
-**Total Fare (Normal):** RM3.00–3.40\
-**Total Fare (Student):** RM1.50–1.70
-
-
-##  Bus Frequency & Timing
-
-* **Peak hours:** 6.30–9.00 AM / 4.30–8.00 PM → buses every 20–30 mins.  
-* **Off-peak:** Every 40–60 mins.  
-* **Last buses:** Around 10.30–11.00 PM depending on route.  
+**Total Time:** ~10–15 min \
+**Total Fare (Normal):** RM1.40–1.60 \
+**Total Fare (Student):** RM0.70–0.80
 
 ---
 
